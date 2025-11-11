@@ -115,6 +115,7 @@ const AboutSection = ({ data }: AboutSectionProps) => {
             <h3 className="text-2xl font-bold text-gray-100">Highlights</h3>
             <div className="space-y-4">
               {data.highlights.map((highlight, index) => (
+                
                 <motion.div
                   key={highlight.label}
                   initial={{ opacity: 0, y: 30 }}
