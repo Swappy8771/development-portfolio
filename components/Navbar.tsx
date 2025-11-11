@@ -1,31 +1,54 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState('home');
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/experience', label: 'Experience' },
-    { href: '/about', label: 'About Me' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/contact', label: 'Contact' },
+    { href: '#home', label: 'Home', id: 'home' },
+    { href: '#about', label: 'About', id: 'about' },
+    { href: '#experience', label: 'Experience', id: 'experience' },
+    { href: '#projects', label: 'Projects', id: 'projects' },
+    { href: '#contact', label: 'Contact', id: 'contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Update active section based on scroll position
+      const sections = ['home', 'about', 'experience', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -56,11 +79,14 @@ const Navbar = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="flex-shrink-0"
             >
-              <Link href="/" className="text-2xl md:text-3xl font-bold">
+              <button 
+                onClick={() => scrollToSection('home')} 
+                className="text-2xl md:text-3xl font-bold cursor-pointer"
+              >
                 <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent hover:from-purple-400 hover:via-pink-500 hover:to-red-500 transition-all duration-300">
                   Swappy.dev
                 </span>
-              </Link>
+              </button>
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -72,7 +98,7 @@ const Navbar = () => {
             >
               <div className="ml-10 flex items-baseline space-x-8">
                 {navLinks.map((link, index) => {
-                  const isActive = pathname === link.href;
+                  const isActive = activeSection === link.id;
                   return (
                     <motion.div
                       key={link.href}
@@ -80,8 +106,8 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.1 * (index + 3) }}
                     >
-                      <Link
-                        href={link.href}
+                      <button
+                        onClick={() => scrollToSection(link.id)}
                         className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 group ${
                           isActive
                             ? 'text-white'
@@ -100,7 +126,7 @@ const Navbar = () => {
                         )}
                         {/* Hover effect */}
                         <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-400/50 group-hover:via-purple-500/50 group-hover:to-pink-500/50 rounded-full transition-all duration-300" />
-                      </Link>
+                      </button>
                     </motion.div>
                   );
                 })}
@@ -194,7 +220,7 @@ const Navbar = () => {
                 <div className="flex-1 px-6 py-8">
                   <div className="space-y-6">
                     {navLinks.map((link, index) => {
-                      const isActive = pathname === link.href;
+                      const isActive = activeSection === link.id;
                       return (
                         <motion.div
                           key={link.href}
@@ -202,10 +228,9 @@ const Navbar = () => {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.1 }}
                         >
-                          <Link
-                            href={link.href}
-                            onClick={closeMobileMenu}
-                            className={`block px-4 py-3 text-lg font-medium rounded-lg transition-all duration-300 ${
+                          <button
+                            onClick={() => scrollToSection(link.id)}
+                            className={`block w-full px-4 py-3 text-lg font-medium rounded-lg transition-all duration-300 text-left ${
                               isActive
                                 ? 'text-white bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 border border-white/10'
                                 : 'text-gray-300 hover:text-white hover:bg-white/5'
@@ -217,7 +242,7 @@ const Navbar = () => {
                                 <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full" />
                               )}
                             </div>
-                          </Link>
+                          </button>
                         </motion.div>
                       );
                     })}

@@ -2,42 +2,34 @@ export interface ExperienceItem {
   company: string;
   role: string;
   duration: string;
+  location: string;
   tech: string[];
-  achievements: string[];
+  achievements?: string[];
 }
 
 export const experienceData: ExperienceItem[] = [
   {
-    company: "Codixly Tech Solutions",
+    company: "Qodeways Technologies Pvt Ltd",
     role: "Full Stack Developer",
-    duration: "Jan 2023 – Present",
-    tech: ["React", "Next.js", "Node.js", "MongoDB", "Tailwind"],
+    duration: "Feb 2024 – Present",
+    location: "Pune, India",
+    tech: ["Next.js", "React.js", "Angular", "Django", "Node.js", "Redux"],
     achievements: [
-      "Built and deployed a multi-vendor e-commerce platform with Razorpay integration.",
-      "Developed secure authentication and role-based access for LMS system.",
-      "Enhanced UI/UX across multiple products using React and Framer Motion.",
+      "Developed and maintained full-stack web applications using modern frameworks.",
+      "Collaborated with cross-functional teams to deliver high-quality software solutions.",
+      "Implemented responsive designs and optimized application performance.",
     ],
   },
   {
-    company: "Freelance Projects",
-    role: "Web Developer & Designer",
-    duration: "2021 – 2023",
-    tech: ["React", "Figma", "Firebase", "Express"],
+    company: "Bright Forge Solutions",
+    role: "Full Stack Developer",
+    duration: "Aug 2023 – Feb 2024",
+    location: "Pune, India",
+    tech: ["Angular", "Spring Boot", "Java", "PostgreSQL", "PgAdmin", "Microservices"],
     achievements: [
-      "Designed and launched 10+ responsive business websites.",
-      "Improved client conversion rates through user-centric designs.",
-      "Delivered scalable backend integrations and real-time features.",
-    ],
-  },
-  {
-    company: "Personal Projects",
-    role: "Independent Developer",
-    duration: "2020 – 2021",
-    tech: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-    achievements: [
-      "Created dynamic portfolio websites with custom animations.",
-      "Built responsive web applications with modern design principles.",
-      "Learned and implemented best practices in web development.",
+      "Built scalable microservices architecture using Spring Boot and Java.",
+      "Developed dynamic frontend applications with Angular and modern UI/UX principles.",
+      "Managed database operations and optimization using PostgreSQL and PgAdmin.",
     ],
   },
 ];

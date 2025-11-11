@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Briefcase, Calendar, Code, CheckCircle } from 'lucide-react';
+import { Briefcase, Calendar, Code, CheckCircle, MapPin } from 'lucide-react';
 import { experienceData, ExperienceItem } from '@/data/experienceData';
 
 interface ExperienceSectionProps {
@@ -122,9 +122,15 @@ const ExperienceSection = ({ data = experienceData }: ExperienceSectionProps) =>
                           </h3>
                         </div>
                         <p className="text-lg font-semibold text-violet-400 mb-2">{experience.role}</p>
-                        <div className="flex items-center gap-2 text-gray-400 justify-start lg:justify-start">
-                          <Calendar className="w-4 h-4" />
-                          <span className="text-sm">{experience.duration}</span>
+                        <div className="flex flex-col gap-1 text-gray-400">
+                          <div className="flex items-center gap-2 justify-start lg:justify-start">
+                            <Calendar className="w-4 h-4" />
+                            <span className="text-sm">{experience.duration}</span>
+                          </div>
+                          <div className="flex items-center gap-2 justify-start lg:justify-start">
+                            <MapPin className="w-4 h-4" />
+                            <span className="text-sm">{experience.location}</span>
+                          </div>
                         </div>
                       </div>
 
@@ -147,23 +153,25 @@ const ExperienceSection = ({ data = experienceData }: ExperienceSectionProps) =>
                       </div>
 
                       {/* Achievements */}
-                      <div className={`${isEven ? 'lg:text-right' : 'lg:text-left'} text-left`}>
-                        <h4 className="text-sm font-medium text-gray-300 mb-3 flex items-center gap-2 justify-start lg:justify-start">
-                          <CheckCircle className="w-4 h-4 text-green-400" />
-                          Key Achievements
-                        </h4>
-                        <ul className="space-y-2">
-                          {experience.achievements.map((achievement, achIndex) => (
-                            <li
-                              key={achIndex}
-                              className="text-gray-400 text-sm leading-relaxed flex items-start gap-2"
-                            >
-                              <div className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0" />
-                              <span>{achievement}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      {experience.achievements && experience.achievements.length > 0 && (
+                        <div className={`${isEven ? 'lg:text-right' : 'lg:text-left'} text-left`}>
+                          <h4 className="text-sm font-medium text-gray-300 mb-3 flex items-center gap-2 justify-start lg:justify-start">
+                            <CheckCircle className="w-4 h-4 text-green-400" />
+                            Key Achievements
+                          </h4>
+                          <ul className="space-y-2">
+                            {experience.achievements.map((achievement, achIndex) => (
+                              <li
+                                key={achIndex}
+                                className="text-gray-400 text-sm leading-relaxed flex items-start gap-2"
+                              >
+                                <div className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0" />
+                                <span>{achievement}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
                       {/* Hover Glow Effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-violet-500/0 to-pink-500/0 group-hover:from-blue-500/5 group-hover:via-violet-500/5 group-hover:to-pink-500/5 rounded-2xl transition-all duration-300 pointer-events-none" />

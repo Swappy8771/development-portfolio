@@ -1,9 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { Eye, ArrowRight, Mail } from 'lucide-react';
 import Image from 'next/image';
-import { ArrowRight, Eye, Mail } from 'lucide-react';
 
 const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
@@ -107,30 +106,38 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               {/* Primary CTA - View My Work */}
-              <Link href="/projects">
-                <motion.button
-                  className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl overflow-hidden transition-all duration-300 hover:from-blue-600 hover:to-purple-700 hover:shadow-2xl hover:shadow-blue-500/25"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                  <Eye className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:scale-110" />
-                  View My Work
-                  <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                </motion.button>
-              </Link>
+              <motion.button
+                onClick={() => {
+                  const element = document.getElementById('projects');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl overflow-hidden transition-all duration-300 hover:from-blue-600 hover:to-purple-700 hover:shadow-2xl hover:shadow-blue-500/25"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                <Eye className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                View My Work
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              </motion.button>
 
               {/* Secondary CTA - Contact Me */}
-              <Link href="/contact">
-                <motion.button
-                  className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:shadow-xl"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Mail className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:scale-110" />
-                  Contact Me
-                </motion.button>
-              </Link>
+              <motion.button
+                onClick={() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:shadow-xl"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                Contact Me
+              </motion.button>
             </motion.div>
 
             {/* Stats or Quick Info */}
