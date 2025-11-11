@@ -133,7 +133,7 @@ const Tech = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
         >
           <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-            <div className="text-2xl font-bold text-blue-400 mb-2">15+</div>
+            <div className="text-2xl font-bold text-blue-400 mb-2">10+</div>
             <div className="text-gray-400 text-sm">Technologies</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">

@@ -19,7 +19,7 @@ export const aboutData = {
   ],
   highlights: [
     { label: "Experience", value: "3+ Years", icon: "Briefcase" },
-    { label: "Projects", value: "15+ Completed", icon: "Code" },
+    { label: "Projects", value: "10+ Completed", icon: "Code" },
     { label: "Location", value: "India", icon: "MapPin" },
   ],
   resumeUrl: "/resume.pdf", // Add your resume file to public folder
