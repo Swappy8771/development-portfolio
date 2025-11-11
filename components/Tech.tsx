@@ -89,16 +89,7 @@ const Tech = () => {
                     key={`${tech.name}-${index}`}
                     className="flex-shrink-0 group cursor-pointer"
                     whileHover={{ scale: 1.1 }}
-                    animate={{
-                      y: [0, -10, 0],
-                    }}
                     transition={{
-                      y: {
-                        duration: 2 + (index % 3) * 0.5, // Staggered wave effect
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.1,
-                      },
                       scale: {
                         duration: 0.2,
                       },

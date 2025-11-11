@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
+import Tech from "../components/Tech";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function HomePage() {
     <main className="min-h-screen">
       <Navbar />
       <HeroSection />
+      <Tech />
       <Footer />
     </main>
   );

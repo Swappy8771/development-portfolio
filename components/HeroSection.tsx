@@ -88,13 +88,7 @@ const HeroSection = () => {
               variants={itemVariants}
               className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-300 mb-6"
             >
-              <span className="text-blue-400">Full Stack Developer</span>
-              <span className="text-gray-400"> | </span>
-              <span className="text-purple-400">React</span>
-              <span className="text-gray-400"> | </span>
-              <span className="text-pink-400">Next.js</span>
-              <span className="text-gray-400"> | </span>
-              <span className="text-violet-400">Node.js</span>
+              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Full Stack Developer</span>
             </motion.h2>
 
             {/* Description */}

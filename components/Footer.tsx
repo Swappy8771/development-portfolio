@@ -189,9 +189,7 @@ const Footer = () => {
               {' '}| All Rights Reserved
             </p>
             
-            <div className="flex items-center space-x-4 text-xs text-gray-500">
-              <span>Made with ❤️ using Next.js & Tailwind CSS</span>
-            </div>
+          
           </div>
         </motion.div>
       </div>
