@@ -149,37 +149,7 @@ const AboutSection = ({ data }: AboutSectionProps) => {
           </motion.div>
         </div>
 
-        {/* Second Row - Resume Button (Centered) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center mb-16"
-        >
-          <motion.a
-            href={data.resumeUrl}
-            download
-            className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-blue-500 to-violet-600 rounded-xl overflow-hidden transition-all duration-300 hover:from-blue-600 hover:to-violet-700 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-400 to-violet-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-            <svg
-              className="w-5 h-5 mr-3 transition-transform duration-300 group-hover:scale-110"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-            Download Resume
-          </motion.a>
-        </motion.div>
+
 
         {/* Third Row - Let's Connect Card (Full Width) */}
         <motion.div

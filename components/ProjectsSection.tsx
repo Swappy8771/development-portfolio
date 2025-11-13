@@ -1,194 +1,127 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { ExternalLink, Github, Code, Zap } from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { projectsData } from '@/data/projectsData';
+import ProjectCard from '@/components/ProjectCard';
+import { ArrowRight } from 'lucide-react';
 
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  image?: string;
-}
+const ProjectsSection = () => {
+  const [activeFilter, setActiveFilter] = useState('All');
 
-const projectsData: Project[] = [
-  {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with user authentication, payment integration, and admin dashboard. Built with modern technologies for optimal performance.",
-    tech: ["Next.js", "React", "Node.js", "MongoDB", "Stripe"],
-    liveUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-    tech: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-    liveUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    title: "Portfolio Website",
-    description: "A responsive portfolio website with smooth animations, dark mode support, and optimized performance. Built with modern web technologies.",
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    liveUrl: "#",
-    githubUrl: "#",
-  },
-];
+  // Extract unique categories from projects data
+  const categories = ['All', ...Array.from(new Set(projectsData.map(project => project.category).filter(Boolean)))];
 
-interface ProjectsSectionProps {
-  data?: Project[];
-}
-
-const ProjectsSection = ({ data = projectsData }: ProjectsSectionProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-      },
-    },
-  };
+  // Filter projects based on active category
+  const filteredProjects = activeFilter === 'All' 
+    ? projectsData 
+    : projectsData.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" ref={ref} className="min-h-screen bg-gray-950 relative overflow-hidden py-20">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
-
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
+    <section className="bg-gray-950 text-gray-100 py-20 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <motion.div 
-          variants={itemVariants}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            My{' '}
-            <span className="bg-gradient-to-r from-blue-400 via-violet-500 to-pink-500 bg-clip-text text-transparent">
-              Projects
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-violet-500 bg-clip-text text-transparent">
+            Featured & Client Work
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 via-violet-500 to-pink-500 mx-auto rounded-full mb-6" />
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            A showcase of my recent work and personal projects
+          <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            A selection of products, client work, and tools I've built recently.
           </p>
+        </motion.div>
+
+        {/* Category Filter Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="flex flex-wrap justify-center gap-3 mb-12"
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setActiveFilter(category)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                activeFilter === category
+                  ? 'bg-gradient-to-r from-blue-500 to-violet-600 text-white shadow-lg shadow-blue-500/25'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700 hover:border-gray-600'
+              }`}
+            >
+              {category}
+            </motion.button>
+          ))}
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data.map((project) => (
-            <motion.div
-              key={project.title}
-              variants={itemVariants}
-              className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-violet-400/50 hover:bg-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-violet-500/10"
-              whileHover={{ y: -5 }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{
+            duration: 0.6,
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {filteredProjects.map((project, index) => (
+            <motion.div 
+              key={project.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.1,
+                ease: 'easeOut'
+              }}
             >
-              {/* Project Image Placeholder */}
-              <div className="w-full h-48 bg-gradient-to-br from-blue-500/20 to-violet-500/20 rounded-xl mb-6 flex items-center justify-center group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-all duration-300">
-                <Code className="w-12 h-12 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
-              </div>
-
-              {/* Project Content */}
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-gradient-to-r from-blue-500/20 to-violet-500/20 text-blue-300 text-xs font-medium rounded-full border border-blue-400/30 hover:border-blue-400/50 hover:from-blue-500/30 hover:to-violet-500/30 transition-all duration-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Project Links */}
-                <div className="flex gap-4 pt-4">
-                  {project.liveUrl && (
-                    <motion.a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-violet-600 text-white text-sm font-medium rounded-lg hover:from-blue-600 hover:to-violet-700 transition-all duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Live Demo
-                    </motion.a>
-                  )}
-                  {project.githubUrl && (
-                    <motion.a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-white/10 text-gray-300 text-sm font-medium rounded-lg hover:bg-white/20 hover:text-white transition-all duration-300 border border-white/20 hover:border-white/40"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Github className="w-4 h-4" />
-                      Code
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-
-              {/* Hover Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-violet-500/0 to-pink-500/0 group-hover:from-blue-500/5 group-hover:via-violet-500/5 group-hover:to-pink-500/5 rounded-2xl transition-all duration-300 pointer-events-none" />
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                tech={project.tech}
+                image={project.image}
+                demo={project.demo}
+                repo={project.repo}
+                tags={project.tags}
+                category={project.category}
+                isClient={project.isClient}
+              />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Call to Action */}
-        <motion.div 
-          variants={itemVariants}
+        {/* View All Projects Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <p className="text-gray-400 mb-6">
-            Want to see more of my work or collaborate on a project?
-          </p>
           <motion.a
-            href="#contact"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-violet-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-violet-700 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25"
+            href="#projects-bottom"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-violet-600 hover:from-blue-600 hover:to-violet-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-950"
           >
-            <Zap className="w-5 h-5 mr-2" />
-            Let&apos;s Work Together
+            View All Projects
+            <ArrowRight size={18} />
           </motion.a>
         </motion.div>
-      </motion.div>
+
+        {/* Anchor for "View All Projects" scroll target */}
+        <div id="projects-bottom" className="h-1" />
+      </div>
     </section>
   );
 };
