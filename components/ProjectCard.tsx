@@ -164,5 +164,6 @@ export default function ProjectCard({
       </div>
 
     </motion.div>
+    
   );
 }
