@@ -1,129 +1,160 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import useEmblaCarousel from 'embla-carousel-react';
+import { EmblaCarouselType } from 'embla-carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { projectsData } from '@/data/projectsData';
 import ProjectCard from '@/components/ProjectCard';
-import { ArrowRight } from 'lucide-react';
 
-const ProjectsSection = () => {
-  const [activeFilter, setActiveFilter] = useState('All');
+export default function ProjectsSection() {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'start',
+      slidesToScroll: 1,
+      breakpoints: {
+        '(min-width: 640px)': { slidesToScroll: 1 },
+        '(min-width: 1024px)': { slidesToScroll: 1 },
+      },
+    },
+    [Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })]
+  );
 
-  // Extract unique categories from projects data
-  const categories = ['All', ...Array.from(new Set(projectsData.map(project => project.category).filter(Boolean)))];
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
-  // Filter projects based on active category
-  const filteredProjects = activeFilter === 'All' 
-    ? projectsData 
-    : projectsData.filter(project => project.category === activeFilter);
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
+  const onInit = useCallback((emblaApi: EmblaCarouselType) => {
+    setScrollSnaps(emblaApi.scrollSnapList());
+  }, []);
+
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    onInit(emblaApi);
+    onSelect(emblaApi);
+    emblaApi.on('reInit', onInit);
+    emblaApi.on('select', onSelect);
+  }, [emblaApi, onInit, onSelect]);
 
   return (
-    <section className="bg-gray-950 text-gray-100 py-20 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-20 bg-gray-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-violet-500 bg-clip-text text-transparent">
-            Featured & Client Work
-          </h2>
-          <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            A selection of products, client work, and tools I've built recently.
-          </p>
-        </motion.div>
-
-        {/* Category Filter Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
-        >
-          {categories.map((category) => (
-            <motion.button
-              key={category}
-              onClick={() => setActiveFilter(category)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-                activeFilter === category
-                  ? 'bg-gradient-to-r from-blue-500 to-violet-600 text-white shadow-lg shadow-blue-500/25'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700 hover:border-gray-600'
-              }`}
-            >
-              {category}
-            </motion.button>
-          ))}
-        </motion.div>
-
-        {/* Projects Grid */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{
-            duration: 0.6,
-            staggerChildren: 0.1,
-            delayChildren: 0.2,
-          }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredProjects.map((project, index) => (
-            <motion.div 
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1,
-                ease: 'easeOut'
-              }}
-            >
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                tech={project.tech}
-                image={project.image}
-                demo={project.demo}
-                repo={project.repo}
-                tags={project.tags}
-                category={project.category}
-                isClient={project.isClient}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* View All Projects Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <motion.a
-            href="#projects-bottom"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-violet-600 hover:from-blue-600 hover:to-violet-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-950"
-          >
-            View All Projects
-            <ArrowRight size={18} />
-          </motion.a>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-violet-500 bg-clip-text text-transparent mb-4">
+            Featured Projects
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Explore my portfolio of innovative solutions across various domains, 
+            from healthcare to education and beyond.
+          </p>
         </motion.div>
 
-        {/* Anchor for "View All Projects" scroll target */}
-        <div id="projects-bottom" className="h-1" />
+        {/* Carousel Container */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative"
+        >
+          {/* Carousel Wrapper with Glow Effect */}
+          <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50 shadow-2xl shadow-blue-500/5">
+            {/* Navigation Arrows - Desktop Only */}
+            <button
+              onClick={scrollPrev}
+              className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 items-center justify-center bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 group"
+            >
+              <ChevronLeft className="w-6 h-6 text-gray-300 group-hover:text-blue-400 transition-colors" />
+            </button>
+            
+            <button
+              onClick={scrollNext}
+              className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 items-center justify-center bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 group"
+            >
+              <ChevronRight className="w-6 h-6 text-gray-300 group-hover:text-blue-400 transition-colors" />
+            </button>
+
+            {/* Embla Carousel */}
+            <div className="overflow-hidden rounded-xl" ref={emblaRef}>
+              <div className="flex">
+                {projectsData.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="flex-none w-full sm:w-1/2 lg:w-1/3 px-3"
+                  >
+                    <div className="h-full">
+                      <ProjectCard
+                        title={project.title}
+                        description={project.description}
+                        tech={project.tech}
+                        image={project.image}
+                        demo={project.demo}
+                        repo={project.repo}
+                        tags={project.tags}
+                        isClient={project.isClient}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {scrollSnaps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === selectedIndex
+                    ? 'bg-gradient-to-r from-blue-400 to-violet-500 scale-125 shadow-lg shadow-blue-500/30'
+                    : 'bg-gray-600 hover:bg-gray-500 hover:scale-110'
+                }`}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-violet-500/5 rounded-full blur-3xl" />
+        </div>
       </div>
     </section>
   );
-};
-
-export default ProjectsSection;
+}

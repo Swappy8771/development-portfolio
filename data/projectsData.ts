@@ -1,111 +1,107 @@
-export interface ProjectData {
-  id: string;
-  title: string;
-  description: string;
-  tech: string[];
-  image?: string;
-  demo?: string | null;
-  repo?: string | null;
-  tags?: string[];
-  category?: string;
-  isClient?: boolean;
-}
+// data/projectsData.ts
 
-export const projectsData: ProjectData[] = [
+export const projectsData = [
   {
-    id: "1",
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with payment integration, inventory management, and admin dashboard. Built with modern technologies for optimal performance.",
-    tech: ["Next.js", "TypeScript", "Stripe", "Prisma", "PostgreSQL"],
-    image: "/projects/ecommerce.jpg",
-    demo: "https://ecommerce-demo.vercel.app",
-    repo: "https://github.com/username/ecommerce-platform",
-    category: "Full Stack",
-    tags: ["Featured"],
-    isClient: false,
-  },
-  {
-    id: "2",
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates, team collaboration features, and advanced project tracking capabilities.",
-    tech: ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
-    image: "/projects/taskapp.jpg",
-    demo: "https://taskapp-demo.vercel.app",
-    repo: "https://github.com/username/task-management",
-    category: "Full Stack",
-    tags: ["Featured"],
-    isClient: false,
-  },
-  {
-    id: "3",
-    title: "Client Portfolio Website",
-    description: "A stunning portfolio website for a creative agency with custom animations, CMS integration, and optimized performance.",
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Sanity CMS"],
-    image: "/projects/portfolio.jpg",
-    demo: "https://client-portfolio.com",
+    id: "p-edutech",
+    title: "EduTech International",
+    description:
+      "A digital education platform offering Genius Quest exams and skill-based workshops for students from Grade 1 to 8.",
+    tech: ["Node.js", "React", "MySQL", "Ant Design", "Razorpay", "HTML", "CSS"],
+    image: "/images/projects/edutech.png",
+    demo: "https://edutechinternational.in/",
     repo: null,
-    category: "Client",
-    tags: ["Client Work"],
     isClient: true,
+    tags: ["Education", "Workshops"],
   },
+
   {
-    id: "4",
-    title: "Weather Dashboard",
-    description: "A responsive weather application with location-based forecasts, interactive maps, and detailed weather analytics.",
-    tech: ["Vue.js", "TypeScript", "OpenWeather API", "Chart.js"],
-    image: "/projects/weather.jpg",
-    demo: "https://weather-dashboard.vercel.app",
-    repo: "https://github.com/username/weather-dashboard",
-    category: "Frontend",
-    tags: ["Featured"],
-    isClient: false,
-  },
-  {
-    id: "5",
-    title: "WordPress E-Learning Site",
-    description: "Custom WordPress theme and plugin development for an online learning platform with course management and student progress tracking.",
-    tech: ["WordPress", "PHP", "MySQL", "JavaScript", "SCSS"],
-    image: "/projects/elearning.jpg",
-    demo: "https://elearning-site.com",
+    id: "p-doctors2go",
+    title: "Doctors2Go",
+    description:
+      "A healthcare appointment portal where users can choose doctors, book consultations, tele-consult, or seek second opinions.",
+    tech: ["React", "Laravel", "MySQL", "HTML", "CSS"],
+    image: "/images/projects/doctors2go.png",
+    demo: "https://doctors2go.in/",
     repo: null,
-    category: "WordPress",
-    tags: ["Client Work"],
     isClient: true,
+    tags: ["Healthcare", "Appointments"],
   },
+
   {
-    id: "6",
-    title: "Social Media Analytics Tool",
-    description: "A comprehensive analytics dashboard for social media management with data visualization and automated reporting features.",
-    tech: ["React", "Python", "FastAPI", "PostgreSQL", "D3.js"],
-    image: "/projects/analytics.jpg",
+    id: "p-easyranna",
+    title: "EasyRanna",
+    description:
+      "A delivery platform for LPG gas, groceries, and water bottles with secure payments and real-time service updates.",
+    tech: ["React", "Ant Design", "HTML", "CSS"],
+    image: "/images/projects/easyranna.png",
+    demo: "https://easyranna.in/",
+    repo: null,
+    isClient: true,
+    tags: ["Delivery", "E-commerce"],
+  },
+
+  {
+    id: "p-homeintown",
+    title: "Home In Town",
+    description:
+      "A real estate platform designed for searching residential properties with accurate location intelligence.",
+    tech: ["React", "Node.js", "HTML", "CSS"],
+    image: "/images/projects/homeintown.png",
+    demo: "https://www.homeintown.a",
+    repo: null,
+    isClient: true,
+    tags: ["Real Estate", "Property Search"],
+  },
+
+  {
+    id: "p-econofin",
+    title: "EconoFin Loan Agency",
+    description:
+      "A finance and loan management website built on WordPress, offering investment solutions and loan services.",
+    tech: ["WordPress", "PHP", "Elementor", "MySQL"],
+    image: "/images/projects/econofin.png",
+    demo: "https://econofinloan.com/",
+    repo: null,
+    isClient: true,
+    tags: ["Finance", "Loan Agency"],
+  },
+
+  {
+    id: "p-vinamra",
+    title: "Vinamra Signs",
+    description:
+      "A signage and nameplate company website showcasing products, branding, and inquiry services.",
+    tech: ["WordPress", "PHP", "Elementor"],
+    image: "/images/projects/vinamra.png",
+    demo: "https://vinamrasigns.com/",
+    repo: null,
+    isClient: true,
+    tags: ["Branding", "Signage"],
+  },
+
+  {
+    id: "p-templateportal",
+    title: "AI Invoice & Template Portal",
+    description:
+      "A smart template and quotation generator with AI-based PDF text extraction and automated workflow tracking.",
+    tech: ["Next.js", "Node.js", "AI", "HTML", "CSS"],
+    image: "/images/projects/templateportal.png",
+    demo: "https://invoice-cptation-template-portal.vercel.app/login",
+    repo: null,
+    isClient: true,
+    tags: ["AI", "Automation"],
+  },
+
+  {
+    id: "p-hrms",
+    title: "HRMS System (In Progress)",
+    description:
+      "A Human Resource Management System with attendance, payroll, and role-based employee management.",
+    tech: ["Angular", "MUI", "MySQL", "HTML", "CSS"],
+    image: "/images/projects/hrms.png",
     demo: null,
-    repo: "https://github.com/username/social-analytics",
-    category: "Full Stack",
-    tags: ["In Progress"],
-    isClient: false,
-  },
-  {
-    id: "7",
-    title: "Mobile Banking App UI",
-    description: "Modern and secure mobile banking interface design with intuitive user experience and accessibility features.",
-    tech: ["React Native", "TypeScript", "Expo", "Redux"],
-    image: "/projects/banking.jpg",
-    demo: null,
     repo: null,
-    category: "Mobile",
-    tags: ["Client Work", "In Progress"],
     isClient: true,
-  },
-  {
-    id: "8",
-    title: "API Documentation Generator",
-    description: "An automated tool for generating beautiful API documentation from code comments with interactive examples and testing capabilities.",
-    tech: ["Node.js", "TypeScript", "Markdown", "Express"],
-    image: "/projects/apidocs.jpg",
-    demo: "https://api-docs-generator.vercel.app",
-    repo: "https://github.com/username/api-docs-generator",
-    category: "Tools",
-    tags: ["Featured"],
-    isClient: false,
+    tags: ["HRMS", "Startup"],
   },
 ];
