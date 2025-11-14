@@ -152,18 +152,7 @@ const AboutSection = ({ data }: AboutSectionProps) => {
 
 
         {/* Third Row - Let's Connect Card (Full Width) */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-4xl mx-auto"
-        >
-          <h4 className="text-xl font-bold text-gray-100 mb-4 text-center">Let&apos;s Connect!</h4>
-          <p className="text-gray-300 leading-relaxed text-center">
-            I&apos;m always excited to collaborate on interesting projects and discuss new opportunities. 
-            Feel free to reach out if you&apos;d like to work together or just have a chat about technology!
-          </p>
-        </motion.div>
+       
       </motion.div>
     </section>
   );

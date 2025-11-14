@@ -194,15 +194,7 @@ const ExperienceSection = ({ data = experienceData }: ExperienceSectionProps) =>
           <p className="text-gray-400 mb-6">
             Want to know more about my professional journey?
           </p>
-          <motion.a
-            href="/contact"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-violet-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-violet-700 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Briefcase className="w-5 h-5 mr-2" />
-            Let&apos;s Work Together
-          </motion.a>
+        
         </motion.div>
       </motion.div>
     </section>
