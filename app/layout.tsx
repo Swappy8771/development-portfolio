@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Swappy | Full Stack Developer",
-  description: "Portfolio of Swappy — Full Stack Developer specializing in React, Next.js, Node.js, and MongoDB.",
+  title: "Swapnil Patil | Full Stack Developer",
+  description: "Portfolio of Swapnil— Full Stack Developer specializing in React, Next.js, Node.js, and MongoDB.",
 };
 
 export default function RootLayout({

@@ -4,7 +4,7 @@ import ExperienceSection from "../../components/ExperienceSection";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Experience - Swappy.dev | Full Stack Developer Portfolio',
+  title: 'Experience - Swapnil Patil | Full Stack Developer Portfolio',
   description: 'My professional experience and career journey as a Full Stack Developer working with modern web technologies.',
   keywords: ['Experience', 'Career', 'Full Stack Developer', 'Professional Background', 'Work History'],
 };

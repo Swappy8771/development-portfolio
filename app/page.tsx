@@ -11,7 +11,7 @@ import { Metadata } from 'next';
 import { aboutData } from '../data/aboutData';
 
 export const metadata: Metadata = {
-  title: 'Swappy.dev - Full Stack Developer Portfolio',
+  title: 'Swapnil Patil - Full Stack Developer Portfolio',
   description: 'Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. View my projects and get in touch.',
   keywords: ['Full Stack Developer', 'React', 'Next.js', 'Node.js', 'Web Development', 'Portfolio'],
 };

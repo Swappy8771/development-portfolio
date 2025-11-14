@@ -5,8 +5,8 @@ import { aboutData } from '@/data/aboutData';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Me - Swappy.dev',
-  description: 'Learn more about Swappy, a passionate Full Stack Developer specializing in React, Next.js, and the MERN stack.',
+  title: 'About Me - Swapnil dev',
+  description: 'Learn more about Swapnil Patil, a passionate Full Stack Developer specializing in React, Next.js, and the MERN stack.',
   keywords: ['About', 'Full Stack Developer', 'React', 'Next.js', 'MERN Stack', 'Web Development'],
 };
 

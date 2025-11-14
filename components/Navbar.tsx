@@ -84,7 +84,7 @@ const Navbar = () => {
                 className="text-2xl md:text-3xl font-bold cursor-pointer"
               >
                 <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent hover:from-purple-400 hover:via-pink-500 hover:to-red-500 transition-all duration-300">
-                  Swappy.dev
+                  Swapnil Patil
                 </span>
               </button>
             </motion.div>
@@ -253,7 +253,7 @@ const Navbar = () => {
                 <div className="p-6 border-t border-white/10">
                   <div className="text-center text-sm text-gray-400">
                     <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent font-semibold">
-                      Swappy.dev
+                      Swapnil Patil
                     </span>
                   </div>
                 </div>

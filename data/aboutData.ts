@@ -1,5 +1,5 @@
 export const aboutData = {
-  name: "Swappy",
+  name: "Swapnil Patil",
   title: "Full Stack Developer",
   description:
     "I'm a passionate developer who loves building scalable and interactive web applications using the MERN stack and Next.js. I enjoy merging creativity with logic to create seamless digital experiences that solve real-world problems and deliver exceptional user experiences.",

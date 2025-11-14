@@ -19,7 +19,7 @@ const ContactSection = () => {
       label: 'Phone',
       value: '+91 7758023925',
       href: 'tel:+917758023925',
-      ariaLabel: 'Call Swappy at +91 7758023925'
+      ariaLabel: 'Call Swapnil at +91 7758023925'
     },
     {
       icon: Mail,

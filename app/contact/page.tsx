@@ -4,8 +4,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Contact - Swappy.dev',
-  description: 'Get in touch with Swappy for your next project. Full Stack Developer specializing in React, Next.js, and modern web development.',
+  title: 'Contact - Swapnil.dev',
+  description: 'Get in touch with Swapnil Patil for your next project. Full Stack Developer specializing in React, Next.js, and modern web development.',
   keywords: ['Contact', 'Hire Developer', 'Full Stack Developer', 'React Developer', 'Next.js', 'Web Development'],
 };
 

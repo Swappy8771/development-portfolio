@@ -77,7 +77,7 @@ const HeroSection = () => {
             >
               <span className="text-white">Hi, I&apos;m </span>
               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-x">
-                Swappy
+                Swapnil
               </span>
               <span className="text-white"> 👋</span>
             </motion.h1>
@@ -189,7 +189,7 @@ const HeroSection = () => {
                     {/* You can replace this with an actual image */}
                     <Image
                       src="/images/hero.png"
-                      alt="Swappy - Full Stack Developer"
+                      alt="Swapnil- Full Stack Developer"
                       width={384}
                       height={384}
                       className="w-full h-full object-cover"

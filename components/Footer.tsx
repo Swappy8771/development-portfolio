@@ -48,7 +48,7 @@ const Footer = () => {
       external: true,
     },
     {
-      href: 'mailto:hello@swappy.dev',
+      href: 'mailto:swapnipatil7050@gmail.com',
       icon: Mail,
       label: 'Email',
       external: false,
@@ -82,7 +82,7 @@ const Footer = () => {
                 className="text-2xl md:text-3xl font-bold mb-4 cursor-pointer group"
               >
                 <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent hover:from-purple-400 hover:via-pink-500 hover:to-red-500 transition-all duration-300">
-                  Swappy.dev
+                  Swapnil.dev
                 </span>
               </button>
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
@@ -184,7 +184,7 @@ const Footer = () => {
             <p className="text-gray-400 text-sm">
               © {currentYear}{' '}
               <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-medium">
-                Swappy
+                Swapnil Patil
               </span>
               {' '}| All Rights Reserved
             </p>

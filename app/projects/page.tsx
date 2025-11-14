@@ -3,7 +3,7 @@ import Footer from "../../components/Footer";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Projects - Swappy.dev | Full Stack Developer Portfolio',
+  title: 'Projects - Swapnil.dev | Full Stack Developer Portfolio',
   description: 'Explore my latest projects and web applications built with React, Next.js, Node.js, and modern web technologies.',
   keywords: ['Projects', 'Portfolio', 'Web Development', 'React Projects', 'Next.js Apps'],
 };
