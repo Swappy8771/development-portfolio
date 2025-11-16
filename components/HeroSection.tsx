@@ -94,9 +94,9 @@ const HeroSection = () => {
               variants={itemVariants}
               className="text-lg text-gray-400 mb-8 max-w-2xl leading-relaxed"
             >
-              I&apos;m passionate about creating exceptional digital experiences that solve real-world problems. 
-              Specializing in modern web technologies, I build scalable applications that users love and 
-              businesses depend on.
+              I&apos;m a Full Stack Developer who enjoys turning real-world problems into simple, usable digital solutions.
+I’ve worked across education, healthcare, logistics and finance, building products that actually get used.
+Clean UI, reliable backend, and practical problem-solving.
             </motion.p>
 
             {/* CTA Buttons */}
