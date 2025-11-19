@@ -24,29 +24,18 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      href: 'https://github.com/swappy-dev',
+      href: 'https://github.com/Swappy8771',
       icon: Github,
       label: 'GitHub',
       external: true,
     },
     {
-      href: 'https://linkedin.com/in/swappy-dev',
+      href: 'www.linkedin.com/in/swapnil-patil-90889b263',
       icon: Linkedin,
       label: 'LinkedIn',
       external: true,
     },
-    {
-      href: 'https://twitter.com/swappy_dev',
-      icon: Twitter,
-      label: 'Twitter',
-      external: true,
-    },
-    {
-      href: 'https://instagram.com/swappy.dev',
-      icon: Instagram,
-      label: 'Instagram',
-      external: true,
-    },
+   
     {
       href: 'mailto:swapnipatil7050@gmail.com',
       icon: Mail,
