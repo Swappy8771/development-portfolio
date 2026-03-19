@@ -104,4 +104,28 @@ export const projectsData = [
     isClient: true,
     tags: ["HRMS", "Startup"],
   },
+  {
+    id: "p-gochart",
+    title: "GoChart",
+    description:
+      "GoChart is an advanced trading analysis platform that provides real-time market data, multi-chart visualization, and AI-powered insights to help traders identify trends, optimize entries, and make faster decisions.",
+    tech: ["React", "Next.js", "TypeScript", "Node.js","MongoDB", "Express","Charting"],
+    image: "/images/Gochart.png",
+    demo: "https://gochart.in/",
+    repo: null,
+    isClient: true,
+    tags: ["Trading", "AI"],
+  },
+  {
+    id: "p-legalsutra",
+    title: "LegalSutra",
+    description:
+      "LegalSutra is an AI-driven legal analysis platform that helps criminal lawyers quickly process complex case documents, uncover contradictions, and generate actionable insights for stronger courtroom strategies.",
+    tech: ["React", "Next.js", "Python","Django", "TypeScript", "AI"],
+    image: "/images/Legalsutra.png",
+    demo: "https://legalsutra.ai/",
+    repo: null,
+    isClient: true,
+    tags: ["Legal", "AI"],
+  },
 ];
