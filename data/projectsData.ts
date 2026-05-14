@@ -47,7 +47,7 @@ export const projectsData = [
       "A real estate platform designed for searching residential properties with accurate location intelligence.",
     tech: ["React", "Node.js", "HTML", "CSS"],
     image: "/images/homeintown.png",
-    demo: "https://www.homeintown.a",
+    demo: "https://www.homeintown.ai",
     repo: null,
     isClient: true,
     tags: ["Real Estate", "Property Search"],
